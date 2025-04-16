@@ -1,0 +1,27 @@
+/* ========== INITIALIZE ========== */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== BASE STYLES ========== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e3e3e3;
+  color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== LAYOUT HELPERS ========== */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
