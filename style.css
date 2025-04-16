@@ -8,8 +8,8 @@
 /* ========== BASE STYLES ========== */
 body {
   font-family: Arial, sans-serif;
-  background-color: #e3e3e3;
-  color: #000000;
+  background-color: #f4f4f4;
+  color: #222;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,4 +24,46 @@ body {
 
 .text-center {
   text-align: center;
+}
+
+.hide {
+  display:none !important;
+}
+/* ========== HEADER ========== */
+
+.header-container {
+  padding: 3rem;
+  margin-bottom: 2rem;
+  background-color: #222222;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-container {
+  font-size: 1.5rem;
+  color: #f4f4f4
+}
+
+.dark-mode-container {
+  align-self: center;
+}
+
+#dark-mode-button,
+#light-mode-button {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  background-color: inherit;
+}
+
+#dark-mode-button{
+  color: #f4f4f4;
+}
+
+#dark-mode-button:hover{
+  background-color: #131313;
+}
+
+#light-mode-button:hover {
+  background-color: #e0e0e0;
 }
