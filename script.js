@@ -1,5 +1,43 @@
 'use strict'
 
+// --- INITIALIZER --- //
+const DEFAULT_GRID_BACKGROUND ="#e3e3e3";
+const DEFAULT_GRID_COLOR ='#000000';
+const DEFAULT_MODE = 'color';
+const DEFAULT_SIZE = '50';
+
+// --- SELECTORS --- //
+const gridContainer = document.querySelector('.grid-container');
+const slideContainer = document.querySelector('.slide-container');
+const slideInput = document.querySelector('#slider-range');
+
+// --- DECLERATIONS --- //
+let currentGridColor = DEFAULT_GRID_COLOR;
+let currentMode = DEFAULT_MODE;
+let currentSize = DEFAULT_SIZE;
+
+// --- APP LOGIC --- //
+const createGrid = function() {
+  while(gridContainer.firstChild){
+    gridContainer.removeChild(gridContainer.firstChild);
+  };
+
+  currentSize = slideInput.value;
+  let squareSize = 600 / currentSize;
+
+  for (let i = 0; i < currentSize * currentSize; i++) {
+    const square = document.createElement('div');
+    square.classList.add('grid-square');
+    square.style.width = `${squareSize}px`;
+    square.style.height = `${squareSize}px`;
+    gridContainer.appendChild(square);
+  }
+};
+
+createGrid();
+console.log(slideInput.value);
+
+
 // ===== Grid Creation =====
 // - Clear all existing squares from .game-container
 // - Get current slider value (squaresPerSide)
