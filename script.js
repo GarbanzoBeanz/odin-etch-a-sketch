@@ -6,13 +6,18 @@ const DEFAULT_GRID_COLOR ='#000000';
 const DEFAULT_MODE = 'color';
 const DEFAULT_SIZE = '50';
 
+
 // --- SELECTORS --- //
 const gridContainer = document.querySelector('.grid-container');
 const slideContainer = document.querySelector('.slide-container');
+const buttonContainer = document.querySelector('.button-container');
+
 const slideInput = document.querySelector('#slider-range');
 const rangeValueSpan = document.querySelector('#range-value');
-const buttonContainer = document.querySelector('.button-container');
+
 const gameButtons = document.querySelectorAll('.game-button');
+const colorButton = document.querySelector('#color-button');
+const inputColor = document.querySelector('#input-color');
 
 // --- DECLERATIONS --- //
 let currentGridColor = DEFAULT_GRID_COLOR;
@@ -58,13 +63,16 @@ slideInput.addEventListener('click', () => {
 
 buttonContainer.addEventListener('click', (e) => {
   let clickedButton = e.target;
-  
+  console.log(clickedButton);
+
   switch(clickedButton.id){
     case 'color-button':
+    case 'input-color':  
       currentMode = 'color';
       removeActive();
-      clickedButton.classList.add('active');
+      colorButton.classList.add('active');
       break;
+
 
     case 'shading-button':
       currentMode = 'shading';
@@ -92,10 +100,18 @@ buttonContainer.addEventListener('click', (e) => {
   };
 });
 
+inputColor.addEventListener('input', (e) => {
+  currentGridColor = inputColor.value;
+});
+
 // ===== Color Button =====
 // - On color button click:
     // - Prompt user for color input
     // - Set currentColor = selected color
+
+// --- FUNCTION CALLS --- //
+createGrid();
+
 
 // ===== Clear Button =====
 // - On clear button click:

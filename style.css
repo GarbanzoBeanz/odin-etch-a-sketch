@@ -41,7 +41,8 @@ body {
 
 .title-container {
   font-size: 1.25rem;
-  color: #eeeeee
+  color: #eeeeee;
+  letter-spacing: 2px;
 }
 
 .dark-mode-container {
@@ -87,7 +88,8 @@ main {
 
 .game-button {
   width: 5.4rem;
-  padding: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   border: none;
   border-radius: 5px;
   background-color: #1abc9c;
@@ -148,6 +150,26 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   background: white;
   border: 1px solid #c0c0c0;
+}
+
+#input-color {
+  -webkit-appearance: none;
+  border: white 1px solid;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+/* Remove default styling in WebKit */
+#input-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+#input-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
 }
 
 .slide-container label {
