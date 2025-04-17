@@ -10,6 +10,7 @@ const DEFAULT_SIZE = '50';
 const gridContainer = document.querySelector('.grid-container');
 const slideContainer = document.querySelector('.slide-container');
 const slideInput = document.querySelector('#slider-range');
+const rangeValueSpan = document.querySelector('#range-value');
 
 // --- DECLERATIONS --- //
 let currentGridColor = DEFAULT_GRID_COLOR;
@@ -34,19 +35,18 @@ const createGrid = function() {
   }
 };
 
-createGrid();
-console.log(slideInput.value);
-
-
-// ===== Grid Creation =====
-// - Clear all existing squares from .game-container
-// - Get current slider value (squaresPerSide)
-// - Calculate total squares = squaresPerSide * squaresPerSide
-// - For each square (0 to totalSquares):
-    // - Create a new div
-    // - Add class "grid-square"
-    // - Set width/height to 600 / squaresPerSide (in px)
-    // - Append to .game-container
+// --- EVENT HANDLERS --- //
+slideInput.addEventListener('click', () => {
+  if(slideInput.value < 4){
+    currentSize = 4;
+    rangeValueSpan.innerHTML = `${slideInput.value}`;
+    createGrid();
+  }else {
+    currentSize = slideInput.value;
+    rangeValueSpan.innerHTML = `${slideInput.value}`;
+    createGrid();
+  };
+});
 
 // ===== Mode Selection =====
 // - Listen for button clicks inside .button-container
