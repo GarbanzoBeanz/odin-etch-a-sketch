@@ -97,17 +97,15 @@ buttonContainer.addEventListener('click', (e) => {
       removeActive();
       clickedButton.classList.add('active');
       break;
+    
+    case 'clear-button':
+      createGrid()
   };
 });
 
 inputColor.addEventListener('input', (e) => {
   currentGridColor = inputColor.value;
 });
-
-// ===== Color Button =====
-// - On color button click:
-    // - Prompt user for color input
-    // - Set currentColor = selected color
 
 // --- FUNCTION CALLS --- //
 createGrid();
