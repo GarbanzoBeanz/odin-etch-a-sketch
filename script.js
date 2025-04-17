@@ -11,6 +11,8 @@ const gridContainer = document.querySelector('.grid-container');
 const slideContainer = document.querySelector('.slide-container');
 const slideInput = document.querySelector('#slider-range');
 const rangeValueSpan = document.querySelector('#range-value');
+const buttonContainer = document.querySelector('.button-container');
+const gameButtons = document.querySelectorAll('.game-button');
 
 // --- DECLERATIONS --- //
 let currentGridColor = DEFAULT_GRID_COLOR;
@@ -35,6 +37,12 @@ const createGrid = function() {
   }
 };
 
+const removeActive = () => {
+  gameButtons.forEach(button => {
+    button.classList.remove('active');
+  });
+};
+
 // --- EVENT HANDLERS --- //
 slideInput.addEventListener('click', () => {
   if(slideInput.value < 4){
@@ -48,12 +56,41 @@ slideInput.addEventListener('click', () => {
   };
 });
 
-// ===== Mode Selection =====
-// - Listen for button clicks inside .button-container
-// - On click:
-    // - Set currentMode = clicked button’s mode
-    // - Remove "active" class from all buttons
-    // - Add "active" class to clicked button
+buttonContainer.addEventListener('click', (e) => {
+  let clickedButton = e.target;
+  
+  switch(clickedButton.id){
+    case 'color-button':
+      currentMode = 'color';
+      removeActive();
+      clickedButton.classList.add('active');
+      break;
+
+    case 'shading-button':
+      currentMode = 'shading';
+      removeActive();
+      clickedButton.classList.add('active');
+      break;
+    
+    case 'lighten-button':
+      currentMode = 'lighten';
+      removeActive();
+      clickedButton.classList.add('active');
+      break;
+
+    case 'rainbow-button':
+      currentMode = 'rainbow';
+      removeActive();
+      clickedButton.classList.add('active');
+      break;
+
+    case 'eraser-button':
+      currentMode = 'shading';
+      removeActive();
+      clickedButton.classList.add('active');
+      break;
+  };
+});
 
 // ===== Color Button =====
 // - On color button click:
