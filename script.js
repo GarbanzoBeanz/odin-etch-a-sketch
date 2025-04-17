@@ -88,6 +88,18 @@ const applyHoverListeners = () => {
     square.addEventListener('mouseover', handleDraw);
   });
 };
+// --- UTILITY FUNCTIONS --- //
+const getRandomColor = () => {
+  const randomNumber = Math.floor(Math.random() * 16777215);
+  const hex = randomNumber.toString(16).padStart(6, '0');
+  return `#${hex}`;
+};
+
+const removeActive = () => {
+  gameButtons.forEach(button => {
+    button.classList.remove('active');
+  });
+};
 
 // --- APP LOGIC --- //
 const createGrid = function() {
@@ -110,11 +122,6 @@ const createGrid = function() {
   applyHoverListeners();
 };  
 
-const removeActive = () => {
-  gameButtons.forEach(button => {
-    button.classList.remove('active');
-  });
-};
 
 const handleDraw = (e) => {
   const square = e.target;
@@ -145,8 +152,7 @@ const handleDraw = (e) => {
       break;
 
       case 'rainbow':
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
-        square.style.backgroundColor = randomColor;
+        square.style.backgroundColor = getRandomColor();
         square.style.opacity = 1;
       break;
     };
