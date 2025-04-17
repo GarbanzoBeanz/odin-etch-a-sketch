@@ -24,30 +24,6 @@ let currentGridColor = DEFAULT_GRID_COLOR;
 let currentMode = DEFAULT_MODE;
 let currentSize = DEFAULT_SIZE;
 
-// --- APP LOGIC --- //
-const createGrid = function() {
-  while(gridContainer.firstChild){
-    gridContainer.removeChild(gridContainer.firstChild);
-  };
-
-  currentSize = slideInput.value;
-  let squareSize = 600 / currentSize;
-
-  for (let i = 0; i < currentSize * currentSize; i++) {
-    const square = document.createElement('div');
-    square.classList.add('grid-square');
-    square.style.width = `${squareSize}px`;
-    square.style.height = `${squareSize}px`;
-    gridContainer.appendChild(square);
-  }
-};
-
-const removeActive = () => {
-  gameButtons.forEach(button => {
-    button.classList.remove('active');
-  });
-};
-
 // --- EVENT HANDLERS --- //
 slideInput.addEventListener('click', () => {
   if(slideInput.value < 4){
@@ -63,7 +39,6 @@ slideInput.addEventListener('click', () => {
 
 buttonContainer.addEventListener('click', (e) => {
   let clickedButton = e.target;
-  console.log(clickedButton);
 
   switch(clickedButton.id){
     case 'color-button':
@@ -93,7 +68,7 @@ buttonContainer.addEventListener('click', (e) => {
       break;
 
     case 'eraser-button':
-      currentMode = 'shading';
+      currentMode = 'eraser';
       removeActive();
       clickedButton.classList.add('active');
       break;
@@ -103,28 +78,48 @@ buttonContainer.addEventListener('click', (e) => {
   };
 });
 
-inputColor.addEventListener('input', (e) => {
+inputColor.addEventListener('input', () => {
   currentGridColor = inputColor.value;
 });
+
+const applyHoverListeners = () => {
+  const gridSquares = document.querySelectorAll('.grid-square');
+  gridSquares.forEach(square => {
+    square.addEventListener('mouseover', handleDraw);
+  });
+};
+
+// --- APP LOGIC --- //
+const createGrid = function() {
+  while(gridContainer.firstChild){
+    gridContainer.removeChild(gridContainer.firstChild);
+  };
+
+  currentSize = slideInput.value;
+  let squareSize = 600 / currentSize;
+
+  for (let i = 0; i < currentSize * currentSize; i++) {
+    const square = document.createElement('div');
+    square.classList.add('grid-square');
+    square.style.width = `${squareSize}px`;
+    square.style.height = `${squareSize}px`;
+    square.setAttribute('draggable', false);
+    gridContainer.appendChild(square);
+  }
+
+  applyHoverListeners();
+};  
+
+const removeActive = () => {
+  gameButtons.forEach(button => {
+    button.classList.remove('active');
+  });
+};
 
 // --- FUNCTION CALLS --- //
 createGrid();
 
-
-// ===== Clear Button =====
-// - On clear button click:
-    // - Loop through all .grid-square elements
-    // - Reset background color to default
-
 // ===== Hover Draw Logic =====
-// - Add mouseover listener to each square after grid creation
-// - On hover:
-    // If currentMode === "color"
-        // - Set background to currentColor
-    // Else if currentMode === "shading"
-        // - Increase opacity by 10% (max 100%)
-    // Else if currentMode === "lighten"
-        // - Decrease opacity by 10% (min 0%)
     // Else if currentMode === "rainbow"
         // - Set background to random RGB value
     // Else if currentMode === "eraser"
