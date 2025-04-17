@@ -11,6 +11,7 @@ const DEFAULT_SIZE = '50';
 const gridContainer = document.querySelector('.grid-container');
 const slideContainer = document.querySelector('.slide-container');
 const buttonContainer = document.querySelector('.button-container');
+const body = document.body;
 
 const slideInput = document.querySelector('#slider-range');
 const rangeValueSpan = document.querySelector('#range-value');
@@ -18,6 +19,9 @@ const rangeValueSpan = document.querySelector('#range-value');
 const gameButtons = document.querySelectorAll('.game-button');
 const colorButton = document.querySelector('#color-button');
 const inputColor = document.querySelector('#input-color');
+
+const darkModeBtn = document.querySelector('#dark-mode-button');
+const lightModeBtn = document.querySelector('#light-mode-button');
 
 // --- DECLERATIONS --- //
 let currentGridColor = DEFAULT_GRID_COLOR;
@@ -88,6 +92,19 @@ const applyHoverListeners = () => {
     square.addEventListener('mouseover', handleDraw);
   });
 };
+
+darkModeBtn.addEventListener('click', () => {
+  body.classList.add('dark-mode');
+  darkModeBtn.classList.add('hide');
+  lightModeBtn.classList.remove('hide');
+});
+
+lightModeBtn.addEventListener('click', () => {
+  body.classList.remove('dark-mode');
+  lightModeBtn.classList.add('hide');
+  darkModeBtn.classList.remove('hide');
+});
+
 // --- UTILITY FUNCTIONS --- //
 const getRandomColor = () => {
   const randomNumber = Math.floor(Math.random() * 16777215);
