@@ -116,6 +116,43 @@ const removeActive = () => {
   });
 };
 
+const handleDraw = (e) => {
+  const square = e.target;
+  const currentOpacity = parseFloat(square.style.opacity) || 0;
+  let applyOpacity = currentOpacity;
+
+  if(e.buttons === 1){
+    switch(currentMode) {
+      case 'color' :
+        square.style.backgroundColor = currentGridColor;
+        square.style.opacity = 1;
+      break;
+
+      case 'shading':
+        if (square.style.opacity != 1 && !square.style.backgroundColor) {
+          square.style.backgroundColor = currentGridColor;
+        }
+        applyOpacity = Math.min(currentOpacity + 0.1, 1);
+        square.style.opacity = applyOpacity;
+      break;
+
+      case 'lighten':
+        if (!square.style.backgroundColor) {
+          square.style.backgroundColor = currentGridColor;
+        }
+        applyOpacity = Math.max(currentOpacity - 0.1, 0);
+        square.style.opacity = applyOpacity;
+      break;
+
+      case 'rainbow':
+        let randomColor = Math.floor(Math.random()*16777215).toString(16);
+        square.style.backgroundColor = randomColor;
+        square.style.opacity = 1;
+      break;
+    };
+  };
+};
+
 // --- FUNCTION CALLS --- //
 createGrid();
 
