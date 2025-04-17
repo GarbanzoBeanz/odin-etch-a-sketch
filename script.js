@@ -155,25 +155,13 @@ const handleDraw = (e) => {
         square.style.backgroundColor = getRandomColor();
         square.style.opacity = 1;
       break;
+
+      case 'eraser':
+        square.style.backgroundColor = DEFAULT_GRID_BACKGROUND;
+        square.style.opacity = 1;
     };
   };
 };
 
 // --- FUNCTION CALLS --- //
 createGrid();
-
-// ===== Hover Draw Logic =====
-    // Else if currentMode === "rainbow"
-        // - Set background to random RGB value
-    // Else if currentMode === "eraser"
-        // - Set background to default color
-
-// ===== Dark Mode Toggle =====
-// - On dark mode button click:
-    // - Add "dark-mode" class to main container
-    // - Show light mode button
-    // - Hide dark mode button
-// - On light mode button click:
-    // - Remove "dark-mode" class
-    // - Show dark mode button
-    // - Hide light mode button
